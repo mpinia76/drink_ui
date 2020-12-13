@@ -1,0 +1,6 @@
+<rasty specificationClass="Drink\UI\layouts\DrinkLoginMetroLayout" templateLocation="DrinkLoginMetroLayout.htm">
+
+<component id="footer" type="FooterDrink">
+	</component>
+
+</rasty>
