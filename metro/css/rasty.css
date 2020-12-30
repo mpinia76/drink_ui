@@ -527,8 +527,8 @@ body.loginform div.logincontainer {
 	margin-bottom: 10px;
 	width: 100%;
 	margin: auto;
-    overflow-x: auto;
-    display: block;
+    /*overflow-x: auto;
+    display: block;*/
 }
 
 .rasty th {
