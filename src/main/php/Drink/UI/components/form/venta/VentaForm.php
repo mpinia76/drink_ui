@@ -5,6 +5,9 @@ namespace Drink\UI\components\form\venta;
 use Cose\Security\service\ServiceFactory;
 use Drink\UI\service\finder\ClienteFinder;
 
+use Drink\UI\service\finder\TipoProductoFinder;
+
+use Drink\UI\service\finder\MarcaProductoFinder;
 
 
 use Drink\UI\components\filter\model\UIVendedorCriteria;
@@ -156,6 +159,13 @@ class VentaForm extends Form{
 
 		$xtpl->assign("mayorista", $oVendedor->getMayorista() );
 
+        $xtpl->assign("lbl_nombre",  $this->localize("producto.nombre") );
+        $xtpl->assign("lbl_tipoProducto",  $this->localize("producto.tipoProducto") );
+        $xtpl->assign("lbl_marcaProducto",  $this->localize("producto.marcaProducto") );
+
+        //agrego los productos mÃ¡s vendidos como accesos rÃ¡pidos a agregar
+        $xtpl->assign("accesos_rapidos_legend", $this->localize( "venta.agregar.accesos_rapidos.legend" ) );
+
 	}
 
 
@@ -234,7 +244,17 @@ class VentaForm extends Form{
 
 	}
 
+    public function getTipoProductoFinderClazz(){
 
+        return get_class( new TipoProductoFinder() );
+
+    }
+
+    public function getMarcaProductoFinderClazz(){
+
+        return get_class( new MarcaProductoFinder() );
+
+    }
 
 	public function getClienteFinderClazz(){
 

@@ -43,42 +43,37 @@
 	.row .col-10,
 	.row .col-11,
 	.row .col-12{width:100%!important;padding-top:0!important;margin-bottom:20px!important}
-	
-}
-
-.venta_left{
-	float:left;
-	width: 45%;
-}
-
-.venta_right{
-	float:right;
-	width: 55%;
-}
-
-
-@media (max-width: 767px) {
-  	.venta_left{
-		width: 100% ;
-		float:left;
-	}
-	.venta_right{
-		width: 100%;
-		float:right;
-	}
-}
-
-@media (max-width: 480px) {
-  	.venta_left{
-		width: 100%;
-		float:left;
-	}
-	.venta_right{
-		width: 100%;
-		float:right;
-	}
 
 }
+
+
+
+@media (min-width:770px) {
+    .venta_left{
+        float:left;
+        width: 0%;
+    }
+
+    .venta_right{
+        float:right;
+        width: 100%;
+    }
+}
+
+
+@media (max-width:770px) {
+    .venta_left{
+        width: 100% ;
+        float:left;
+    }
+    .venta_right{
+        width: 100%;
+        float:right;
+    }
+
+}
+
+
 
 
 
@@ -144,13 +139,13 @@
 
 .metro .icon-pdf:before {
     /*content: "";*/
-    content: url("../../css/images/pdf_32.png"); 
+    content: url("../../css/images/pdf_32.png");
     color: red;
 }
 
 .metro .icon-xls:before {
     /*content: "";*/
-    content: url("../../css/images/xls_32.png"); 
+    content: url("../../css/images/xls_32.png");
     color: red;
 }
 
@@ -234,7 +229,7 @@
 
 .metro .icon-nuevo-pedido:before {
     content: "";
-    
+
 }
 
 .metro .icon-nuestrafija:before {
@@ -319,7 +314,7 @@
 .box_details table, .box_details table tr,.box_details table td{
 	border: 1px solid #DDD !important;
 }
-	
+
 .box_details thead th{
 	font-weight: bold;
 }
@@ -340,7 +335,7 @@
 .box {
     /*color: #2B2B2B;*/
     color:#000;
-    
+
     /*float: right;*/
     font-size: 100%;
     /*height: 550px;*/
@@ -487,7 +482,7 @@
 .movimiento p span.saldo {
     /*color: #2B2B2B;*/
     width: 90px;
-    
+
 }
 .movimiento p {
     text-align: right;
@@ -506,7 +501,7 @@
 }
 .movimiento span{
 	display: inline-block;
-	padding: 0 8px; 	
+	padding: 0 8px;
 }
 
 #agenda_diaria_totales {
@@ -522,7 +517,7 @@
 #agenda_diaria_totales span.turno_ensala{
 
 	font-weight: bold;
-	
+
 }
 
 #agenda_diaria_totales span.turno_totales{
@@ -534,7 +529,7 @@
 .ui-datepicker-week-end a{
 
 	color:red !important;
-	font-weight: bold !important; 
+	font-weight: bold !important;
 }
 
 .uppercase{
@@ -552,8 +547,8 @@
 
 .btn-icon-editar{
 	/*background: url("images/sprite_black2.png") no-repeat scroll -3px -1px transparent;*/
-		
-	background: url("images/edit2.png") -3px -1px no-repeat transparent;	
+
+	background: url("images/edit2.png") -3px -1px no-repeat transparent;
 }
 
 .btn-icon-agregar{
@@ -589,10 +584,10 @@
 	border-bottom: 4px solid #D8D8D8;
 	border-left: 8px solid #D8D8D8;
 	padding:7px;
-	
+
 	/*color: #444;*/
     color:#000;
-    
+
 	position:relative;
 }
 .turno:hover{
@@ -624,7 +619,7 @@
 	display:block;
 	text-align:left;
 	padding:5px;
-	
+
 }
 
 .turno_right span{
@@ -632,7 +627,7 @@
 	text-align:left;
 	padding:5px;
 	margin-left:15px;
-	
+
 }
 .turno_fecha{
 	font-size: 120%;
@@ -682,7 +677,7 @@
 	text-align:left;
 	padding:5px;
 	font-weight: bold;
-	
+
 }
 
 
@@ -693,7 +688,7 @@
 	padding:7px;
 	/*color: #444;*/
     color:#000;
-    
+
 	position:relative;
 }
 .practica:hover, .resumen:hover{
@@ -732,7 +727,7 @@
 	display:block;
 	text-align:left;
 	padding:5px;
-	
+
 }
 
 .fecha_hoy{
@@ -761,16 +756,16 @@
 /*agenda*/
 
 .referencias{
-    
+
     position: relative;
     width: 50%;
-	
+
 }
 
 .referencia{
     /*color: #2B2B2B;*/
     color:#000;
-    
+
     /*float: right;*/
     font-size: 14px;
     /*height: 550px;*/
@@ -781,19 +776,19 @@
     font-size: 13px;
     font-weight: 300;
     text-align: left;
-	
+
 }
 .referencia span{
 	/*color: #2B2B2B;*/
     color:#000;
-    
+
     float: left;
     font-size: 14px;
     line-height: 18px;
     margin: 5px 2% 0 0;
     /*width: 80%;*/
     font-weight: 400;
-	
+
 }
 .referencia p{
 	background: none repeat scroll 0 0 #F6FAFF;
@@ -821,7 +816,7 @@
 
 .turno_libre{
 	background-color: white;
-	
+
 }
 .turno_cancelado{
 	background-color: red;
@@ -850,7 +845,7 @@
 }
 
 .prioridad_normal{
-	
+
 }
 .prioridad_media{
 	border-left: 4px solid blue;
@@ -904,7 +899,7 @@
 	margin: 30px auto 0;
     width: 100%;
 	text-align: center;
-	
+
 }
 #empleado_stats_left{
 	float: left;
@@ -936,7 +931,7 @@
 	margin: 30px auto 0;
     width: 100%;
 	text-align: center;
-	
+
 }
 .historiaClinica_quick_left{
 	float: left;
@@ -954,7 +949,7 @@
 	margin: 30px auto 0;
     width: 100%;
 	text-align: center;
-	
+
 }
 #empleado_home_left{
 	float: left;
@@ -974,14 +969,14 @@
 	width: 100%;
 	margin-bottom: 10px;
 	float:left;
-	display: none;    
+	display: none;
 }
 
 
 #totalesReporte {
     /*color: #2B2B2B;*/
     color:#000;
-    
+
     /*float: right;*/
     font-size: 14px;
     /*height: 550px;*/
@@ -1035,7 +1030,7 @@ fieldset .agenda {
 .agenda {
     /*color: #2B2B2B;*/
     color:#000;
-    
+
     /*float: right;*/
     font-size: 14px;
     /*height: 550px;*/
@@ -1075,7 +1070,7 @@ fieldset .agenda {
     float: left;
     padding: 0px;
    	width: 100%;
-    
+
 }
 
 .agenda_turno:hover{
@@ -1083,11 +1078,11 @@ fieldset .agenda {
 	/*background: -moz-linear-gradient(center top , #FDFDFD, #EEEEEE) repeat scroll 0 0 #EEEEEE;*/
 	background-color: #D8D8D8;
 }
- 
+
 .agenda_turno h2 {
     /*color: #2B2B2B;*/
     color:#000;
-    
+
     float: left;
     font-size: 14px;
     line-height: 18px;
@@ -1113,7 +1108,7 @@ fieldset .agenda {
 .agenda_turno h2 span {
     /*color: #333001;*/
     color:#000;
-    
+
     font-size: 11px;
     font-style: italic;
     font-weight: 500;
@@ -1127,17 +1122,17 @@ fieldset .agenda {
     border-radius: 5px;
     padding:2px;
     background-color: #FFD0D0;
-    
+
 }
 
 .agenda_turno h2 span.importe {
     font-weight: bold;
-    
+
 }
 
 .agenda_turno p span.texto{
 	padding:4px;
-	
+
 }
 
 .agenda_turno p {
@@ -1175,23 +1170,23 @@ fieldset .agenda {
 	background-color: #45407B !important;
 	color:#FFF !important;
 	font-weight: bold !important;
-	
+
 	border-right: 5px solid #45407B !important;
-	border-left: 5px solid #45407B !important; 
+	border-left: 5px solid #45407B !important;
 	border-top: 5px solid #45407B !important;
 }
 
 .agenda_semanal_turno_fechaSeleccionada{
 
 	border-right: 5px solid #45407B !important;
-	border-left: 5px solid #45407B !important; 
+	border-left: 5px solid #45407B !important;
 }
 
 .agenda_semanal_turno_fechaSeleccionada_last{
 
 	border-right: 5px solid #45407B !important;
 	border-left: 5px solid #45407B !important;
-	border-bottom: 5px solid #45407B !important; 
+	border-bottom: 5px solid #45407B !important;
 }
 
 .table_agenda_semanal td h2{
@@ -1202,7 +1197,7 @@ fieldset .agenda {
     font-size:30%;
 }
 .table_agenda_semanal td img{
-	
+
     position:absolute;
     top:-15px;;
     right: 0;
@@ -1401,7 +1396,7 @@ fieldset .agenda {
 }
 
 .ausencia_form_left{
- 	float:left; 
+ 	float:left;
  	width:40%;
 }
 
@@ -1410,7 +1405,7 @@ fieldset .agenda {
 }
 
 .ausencia_form_right{
- 	float:right; 
+ 	float:right;
  	width:50%;
 }
 
@@ -1426,7 +1421,7 @@ fieldset .agenda {
 
 #ausencias_vigentes ul li{
 
-	padding: 10px;	
+	padding: 10px;
 	list-style-type: disc;
 	font-weight: bold;
 }
@@ -1436,14 +1431,14 @@ fieldset .agenda {
 /* mobile */
 @media screen and (min-width: 800px) and (max-width: 1200px) {
 	#fechaPicker{
-		
+
 	}
-	
+
 	#turnos_left{
 		font-size: 80%;
 		width: 25%;
 	}
-	
+
 	#turnos_left #form_agenda fieldset{
 		/*padding:1;*/
 	}
@@ -1468,19 +1463,19 @@ fieldset .agenda {
 	.practica_left{
 		width: 45%;
 	}
-	
-	
+
+
 	.ausencia_form_left{
-	 	float:left; 
+	 	float:left;
 	 	width:40%;
 	}
-	
+
 	.ausencia_form_right{
-	 	float:right; 
+	 	float:right;
 	 	width:40%;
 	}
-	
-	
+
+
 	/* historia clínica quick */
 	.historiaClinica_quick_left, .historiaClinica_quick_right{
 		float: none;
@@ -1491,7 +1486,7 @@ fieldset .agenda {
 
 @media screen and (min-width: 100px) and (max-width: 800px) {
 
-		
+
 	/* empleado home */
 	#empleado_home_left{
 		float: none;
@@ -1502,7 +1497,7 @@ fieldset .agenda {
 		float: none;
 		clear: both;
 		width: 100%;
-	}	
+	}
 	/* agenda turnos */
 	#turnos_left{
 		float: none;
@@ -1514,32 +1509,32 @@ fieldset .agenda {
 		clear: both;
 		width: 100%;
 	}
-	
-	
+
+
 	#ver_agenda {
     	height: 100%;;
 	}
-	
-	
+
+
 	#agenda {
     	height: 100%;
     	overflow: none;
 	}
-	
+
 	.agenda_actions{
 		font-size:50%;
 	}
-	
-	
+
+
 	/* formularios */
-	
+
 	/* historia clínica */
-	
+
 	#historia_clinica_left,.historia_clinica_left {
     	float: none;
     	width: 100%;
     	clear: both;
-		
+
 	}
 	#historia_clinica_right,.historia_clinica_right {
     	float: none;
@@ -1550,7 +1545,7 @@ fieldset .agenda {
 	.practica{
 		font-size:85%;
 	}
-	
+
 	.practica_right{
 		width: 55%;
 	}
@@ -1558,15 +1553,15 @@ fieldset .agenda {
 	.practica_left{
 		width: 45%;
 	}
-	
+
 	.ausencia_form_left{
 	 	float:none;
-	 	clear: both; 
+	 	clear: both;
 	 	width:90%;
 	}
-	
+
 	.ausencia_form_right{
-	 	float:none; 
+	 	float:none;
 	 	clear: both;
 	 	width:90%;
 	}
@@ -1577,6 +1572,6 @@ fieldset .agenda {
     	width: 100%;
     	clear: both;
 	}
-	
+
 }
 

@@ -15,7 +15,7 @@ function addTrDetalle($detalle, $table, $index){
 
 	$row = $('<tr/>', {'class' : 'detalle'});
 
-    $row.append($('<td/>').append($detalle["producto_nombre"]));
+    $row.append($('<td colspan="3"/>').append($detalle["producto_nombre"]));
     $row.append($('<td/>', {'class' : 'importe'}).append("$" +$detalle["precioUnitario"]));
     $row.append($('<td/>', {'class' : 'importe'}).append($detalle["cantidad"]));
     $row.append($('<td/>', {'class' : 'importe'}).append("$" +$detalle["subtotal"]));
@@ -40,8 +40,8 @@ function addTrTotales($data, $table){
 
 	$row = $('<tr/>');
 
+    $row.append($('<td colspan="3"/>', {'class' : 'totales'}).append(""));
     $row.append($('<td/>', {'class' : 'totales'}).append("Totales"));
-    $row.append($('<td/>', {'class' : 'totales importe'}).append());
     $row.append($('<td/>', {'class' : 'totales importe'}).append( $cantidad ));
     $row.append($('<td/>', {'class' : 'totales importe'}).append( "$" + $importe.toFixed(2)));
     $row.append($('<td/>').append());
@@ -139,14 +139,13 @@ function productochange(entity){
 		$("#detalleSubtotal").html($precio) ;
 
 		$("#detalleCantidad").change();
-		/*if($precioLista>0){
+        if($("#accesoRapido").val()==1){
 
-			agregarDetalle();
-		}else{
-			$("#detallePrecio").val( "" ) ;
-			$("#detallePrecio").focus() ;
-		}*/
-		$("#detallePrecio").focus() ;
+            consultarStockDetalle();
+        }else{
+            $("#detallePrecio").focus() ;
+        }
+        $("#accesoRapido").val(0);
 	}
 }
 
@@ -362,7 +361,7 @@ function quitarDetalle( $index ){
 }
 
 function seleccionarProducto( oid ){
-
+    $("#accesoRapido").val( 1) ;
 	$("#findentity_detalleProducto_inputCode").val( oid ) ;
 	$("#findentity_detalleProducto_inputCode").blur() ;
 }
@@ -406,7 +405,36 @@ function  vendedorchange( ){
 	}
 }
 
+function tipoProductochange( ){
+    submitBuscarAccesosRapidos("{WEB_PATH}");
 
+}
+
+function marcaProductochange( ){
+    submitBuscarAccesosRapidos("{WEB_PATH}");
+
+}
+
+
+
+function submitBuscarAccesosRapidos(webpath){
+
+    var $tipoProducto = $("#findentity_tipoProducto_autocomplete").val() ;
+    var $marcaProducto = $("#findentity_marcaProducto_autocomplete").val() ;
+    var $nombreProducto = $("#nombreProducto").val() ;
+    $.ajax({
+        url: webpath + "AccesosRapidos.rasty",
+        type: "POST",
+        data: { nombreProducto: $nombreProducto,marcaProducto: $marcaProducto,tipoProducto: $tipoProducto},
+        cache: false,
+        success: function(content){
+
+            $("#accesosRapidos" ).html(content);
+            //$( resultId ).fadeTo("fast", 1);
+
+        }
+    });
+}
 
 
 $(function() {
@@ -439,7 +467,7 @@ $(function() {
 	$("detallePrecio").focus(function(){
         this.select();
     });
-
+    submitBuscarAccesosRapidos("{WEB_PATH}");
 
 });
 </script>
@@ -477,7 +505,18 @@ $(function() {
 
 	text-align: left !important;
 }
+@media (max-width:770px) {
+    .venta_left{
+        width: 40%;
+    }
 
+}
+
+@media (min-width:770px) {
+    .venta_left{
+        width: 0%;
+    }
+}
 td.actions, .detalle button{
 
 	text-align: center;
@@ -499,7 +538,47 @@ display:none;
 
 <div>
 
+    <div class="venta_left mostrarMovil">
+        <input type="hidden" value="0" name="accesoRapido" id="accesoRapido" />
+        <fieldset class="accesos_rapidos">
 
+            <legend>{accesos_rapidos_legend}</legend>
+            <fieldset>
+                <div class="criteria_left">
+
+                    <div class="item" style="min-width: {minWidth};">
+                        <label for="nombre">{lbl_nombre}:</label>
+                        <rasty id="nombre" />
+                    </div>
+                    <div class="item" style="min-width: {minWidth};">
+                        <label for="tipoProducto">{lbl_tipoProducto}:</label>
+                        <rasty id="tipoProducto" />
+                    </div>
+
+                </div>
+                <div class="criteria_right">
+
+                    <div class="item" style="min-width: {minWidth};">
+                        <label for="marcaProducto">{lbl_marcaProducto}:</label>
+                        <rasty id="marcaProducto" />
+                    </div>
+
+                </div>
+            </fieldset>
+            <div id="accesosRapidos">
+                <!-- BEGIN:agregar_producto -->
+                <button class="shortcut" onclick="javascript: seleccionarProducto('{codigo}')"  title="{nombre}" >
+                    <!--<img src="{logo}" alt="{nombre}">-->
+                </button>
+                <!-- END:agregar_producto -->
+            </div>
+
+
+        </fieldset>
+
+    </div>
+
+    <div class="venta_right">
 
 
 	<form class="cuentas_form" id="venta_form" onsubmit="return validate('venta_form');" action="{action}" method="{method}">
@@ -547,8 +626,8 @@ display:none;
 			<thead>
 				<tr>
 					<td colspan="2"><rasty id="detalleProducto"/></td>
-					<td colspan="2"><rasty id="detallePack"/></td>
-					<td colspan="2"><rasty id="detalleCombo"/></td>
+					<td colspan="2" class="ocultarMovil"><rasty id="detallePack"/></td>
+					<td colspan="2" class="ocultarMovil"><rasty id="detalleCombo"/></td>
 				</tr>
 				<tr>
 					<td></td>
@@ -567,13 +646,11 @@ display:none;
 			</thead>
 			<thead>
 				<tr>
-					<th>{lbl_detalle_nombre}</th>
+                    <th colspan="3">{lbl_detalle_nombre}</th>
 					<th>{lbl_detalle_precio}</th>
 					<th>{lbl_detalle_cantidad}</th>
 					<th>{lbl_detalle_subtotal}</th>
-					<th></th>
-					<th></th>
-					<th></th>
+
 				</tr>
 			</thead>
 			<tbody>
@@ -603,6 +680,7 @@ display:none;
 
 		</fieldset>
 </form>
+    </div>
 </div>
 <div style="clear: both;"></div>
 
