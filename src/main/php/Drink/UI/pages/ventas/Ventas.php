@@ -23,49 +23,49 @@ use Rasty\Menu\menu\model\MenuOption;
 
 /**
  * Página para consultar los ventas.
- * 
+ *
  * @author Marcos
  * @since 13-03-2018
- * 
+ *
  */
 class Ventas extends DrinkPage{
 
-	
+
 	private $ventaCriteria;
-	
+
 	public function __construct(){
 		$ventaCriteria = new VentaCriteria();
-		
-		
+
+
 		$this->setVentaCriteria($ventaCriteria);
 	}
-	
+
 	public function getTitle(){
 		return $this->localize( "ventas.title" );
 	}
 
 	public function getMenuGroups(){
 
-		//TODO construirlo a partir del usuario 
+		//TODO construirlo a partir del usuario
 		//y utilizando permisos
-		
+
 		$menuGroup = new MenuGroup();
-		
+
 		$menuOption = new MenuOption();
 		$menuOption->setLabel( $this->localize( "menu.ventas.agregar") );
 		$menuOption->setPageName("VentaAgregar");
 		$menuOption->setIconClass( "icon-ventas");
 		$menuGroup->addMenuOption( $menuOption );
-		
-		
+
+
 		return array($menuGroup);
 	}
-	
+
 	public function getType(){
-		
+
 		return "Ventas";
-		
-	}	
+
+	}
 
 	public function getModelClazz(){
 		return get_class( new VentaGridModel() );
@@ -74,16 +74,16 @@ class Ventas extends DrinkPage{
 	public function getUicriteriaClazz(){
 		return get_class( new UIVentaCriteria() );
 	}
-	
+
 	protected function parseXTemplate(XTemplate $xtpl){
 
 		$xtpl->assign("legend_operaciones", $this->localize("grid.operaciones") );
 		$xtpl->assign("legend_resultados", $this->localize("grid.resultados") );
-		
+
 		$xtpl->assign("agregar_label", $this->localize("venta.agregar") );
-		
+
 		$ventaFilter = $this->getComponentById("ventasFilter");
-		
+
 		$ventaFilter->fillFromSaved( $this->getVentaCriteria() );
 	}
 
@@ -96,6 +96,6 @@ class Ventas extends DrinkPage{
 	{
 	    $this->ventaCriteria = $ventaCriteria;
 	}
-	
+
 }
 ?>

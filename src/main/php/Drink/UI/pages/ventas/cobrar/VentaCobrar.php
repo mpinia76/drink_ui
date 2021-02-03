@@ -6,6 +6,8 @@ use Drink\UI\service\UIServiceFactory;
 use Drink\Core\utils\DrinkUtils;
 use Drink\UI\utils\DrinkUIUtils;
 
+use Rasty\security\RastySecurityContext;
+
 use Drink\UI\pages\DrinkPage;
 
 use Rasty\utils\XTemplate;
@@ -24,83 +26,91 @@ class VentaCobrar extends DrinkPage{
 	private $venta;
 
 	private $error;
-	
+
 	private $backTo;
-	
+
 	public function __construct(){
-		
+
 		//inicializamos el venta.
 		$venta = new Venta();
-		
-		
+
+
 		$this->setVenta($venta);
 
-		
+
 	}
-	
+
 	public function getMenuGroups(){
 
-		//TODO construirlo a partir del usuario 
+		//TODO construirlo a partir del usuario
 		//y utilizando permisos
-		
+
 		$menuGroup = new MenuGroup();
-		
+
 //		$menuOption = new MenuOption();
 //		$menuOption->setLabel( $this->localize( "form.volver") );
 //		$menuOption->setPageName("Ventas");
 //		$menuGroup->addMenuOption( $menuOption );
-//		
-		
+//
+
 		return array($menuGroup);
 	}
-	
+
 	public function getTitle(){
 		return $this->localize( "venta.cobrar.title" );
 	}
 
 	public function getType(){
-		
+
 		return "VentaCobrar";
-		
-	}	
+
+	}
 
 	protected function parseXTemplate(XTemplate $xtpl){
-		
+
 		$xtpl->assign( "venta_legend", $this->localize( "cobrarVenta.venta.legend") );
 		$xtpl->assign( "forma_pago_legend", $this->localize( "cobrarVenta.forma_pago.legend") );
-		
+
 		$xtpl->assign( "lbl_efectivo", $this->localize( "forma.pago.efectivo") );
 		$xtpl->assign( "lbl_tarjeta", $this->localize( "forma.pago.tarjeta") );
 		$xtpl->assign( "lbl_ctacte", $this->localize( "forma.pago.ctacte") );
 		$xtpl->assign( "lbl_anular", $this->localize( "venta.anular") );
 		$xtpl->assign( "lbl_pendiente", $this->localize( "forma.pago.pendiente") );
-		
-		
+
+
 		$xtpl->assign( "linkCobrarEfectivo", $this->getLinkActionCobrarVentaEfectivo($this->getVenta()) );
 		$xtpl->parse( "main.forma_pago_caja");
-		
-		$xtpl->assign( "linkCobrarTarjeta", $this->getLinkCobrarVentaTarjeta($this->getVenta()) );
-		$xtpl->parse( "main.forma_pago_tarjeta");
-		
+
+        $user = RastySecurityContext::getUser();
+
+        $user = DrinkUtils::getUserByUsername($user->getUsername());
+
+        if( DrinkUtils::isAdmin($user)) {
+            $xtpl->assign("linkCobrarTarjeta", $this->getLinkCobrarVentaTarjeta($this->getVenta()));
+            $xtpl->parse("main.forma_pago_tarjeta");
+        }
+
 		$xtpl->assign( "linkAnular", $this->getLinkVentaAnular( $this->getVenta()) );
-		
-		if( $this->getVenta()->getCliente()->hasCuentaCorriente() ){
-			$xtpl->assign( "linkCobrarCtaCte", $this->getLinkActionCobrarVentaCtaCte($this->getVenta()) );
-			$xtpl->parse( "main.forma_pago_ctacte");
-		}
-		
+
+        if( DrinkUtils::isAdmin($user)) {
+            if ($this->getVenta()->getCliente()->hasCuentaCorriente()) {
+                $xtpl->assign("linkCobrarCtaCte", $this->getLinkActionCobrarVentaCtaCte($this->getVenta()));
+                $xtpl->parse("main.forma_pago_ctacte");
+            }
+        }
+
 		$backTo = $this->getBackTo();
 		if( empty($backTo) ){
 			$backTo = "Ventas";
 		}
-		
+
 		$xtpl->assign( "linkPendiente", LinkBuilder::getPageUrl( $backTo ) );
 		$xtpl->parse("main.forma_pago_pendiente");
-		
+
 		$msg = $this->getError();
-		
+
 		if( !empty($msg) ){
-			
+
 			$xtpl->assign("msg", $msg);
 			//$xtpl->assign("msg",  );
 			$xtpl->parse("main.msg_error" );
@@ -117,17 +127,17 @@ class VentaCobrar extends DrinkPage{
 	{
 	    $this->venta = $venta;
 	}
-	
+
 	public function setVentaOid($ventaOid)
 	{
 		if(!empty($ventaOid)){
 			$venta = UIServiceFactory::getUIVentaService()->get($ventaOid);
 			$this->setVenta($venta);
 		}
-		
-	    
+
+
 	}
-					
+
 	public function getMsgError(){
 		return "";
 	}
@@ -141,7 +151,7 @@ class VentaCobrar extends DrinkPage{
 	{
 	    $this->error = $error;
 	}
-	
+
 	public function getBackTo()
 	{
 	    return $this->backTo;

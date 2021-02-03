@@ -2,9 +2,12 @@
 namespace Drink\UI\components\filter\model;
 
 
+use Datetime;
 use Drink\UI\utils\DrinkUIUtils;
 use Drink\Core\utils\DrinkUtils;
 use Drink\Core\model\EstadoVenta;
+
+use Rasty\security\RastySecurityContext;
 
 use Drink\UI\components\filter\model\UIDrinkCriteria;
 
@@ -14,7 +17,7 @@ use Drink\Core\criteria\VentaCriteria;
 /**
  * Representa un criterio de búsqueda
  * para Ventas.
- * 
+ *
  * @author Marcos
  * @since 13-03-2018
  *
@@ -28,45 +31,75 @@ class UIVentaCriteria extends UIDrinkCriteria{
 	const ANIO_ACTUAL = "ventasAnioActual";
 	const IMPAGAS = "ventasImpagas";
 	const ANULADAS = "ventasAnuladas";
-	
+
 	private $fechaDesde;
-	
+
 	private $fechaHasta;
-	
+
 	private $fecha;
-				
+
 	private $estados;
-	
+
 	private $estadoNotEqual;
-	
+
 	private $estado;
-	
+
 	private $cliente;
-	
+
 	private $observaciones;
-	
+
 	private $mes;
-	
+
 	private $year;
-	
+
 	private $vendedor;
-	
+
+    private $user;
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
 	public function __construct(){
 
 		parent::__construct();
-		
+
+        $user = RastySecurityContext::getUser();
+
+        $user = DrinkUtils::getUserByUsername($user->getUsername());
+
+        if( DrinkUtils::isAdmin($user)) {
+
+        }
+        else{
+            $this->setUser($user);
+        }
+
+
 		//$this->setFiltroPredefinido( self::HOY );
 
 	}
-		
+
 	protected function newCoreCriteria(){
 		return new VentaCriteria();
 	}
-	
+
 	public function buildCoreCriteria(){
-		
+
 		$criteria = parent::buildCoreCriteria();
-		
+
 		$criteria->setFechaDesde( $this->getFechaDesde() );
 		$criteria->setFechaHasta( $this->getFechaHasta() );
 		$criteria->setFecha( $this->getFecha() );
@@ -77,12 +110,13 @@ class UIVentaCriteria extends UIDrinkCriteria{
 		$criteria->setMes( $this->getMes() );
 		$criteria->setYear( $this->getYear() );
 		$criteria->setVendedor( $this->getVendedor() );
-		
+        $criteria->setUser( $this->getUser() );
+
 		return $criteria;
 	}
 
-	
-	
+
+
 	public function getFechaDesde()
 	{
 	    return $this->fechaDesde;
@@ -142,7 +176,7 @@ class UIVentaCriteria extends UIDrinkCriteria{
 	{
 	    $this->cliente = $cliente;
 	}
-	
+
 	public function getCliente()
 	{
 	    return $this->cliente;
@@ -152,7 +186,7 @@ class UIVentaCriteria extends UIDrinkCriteria{
 	{
 	    $this->cliente = $cliente;
 	}
-	
+
 	public function getObservaciones()
 	{
 	    return $this->observaciones;
@@ -162,54 +196,54 @@ class UIVentaCriteria extends UIDrinkCriteria{
 	{
 	    $this->observaciones = $observaciones;
 	}
-	
-	
+
+
 	public function ventasHoy(){
-	
-		$this->setFecha( new \Datetime() );
+
+		$this->setFecha( new Datetime() );
 
 	}
-	
-	
+
+
 	public function ventasSemanaActual(){
 
-		$fechaDesde = DrinkUtils::getFirstDayOfWeek( new \Datetime() );
-		$fechaHasta = DrinkUtils::getLastDayOfWeek( new \Datetime());
-	
+		$fechaDesde = DrinkUtils::getFirstDayOfWeek( new Datetime() );
+		$fechaHasta = DrinkUtils::getLastDayOfWeek( new Datetime());
+
 		$this->setFechaDesde( $fechaDesde );
 		$this->setFechaHasta( $fechaHasta );
 	}
-			
+
 	public function ventasMesActual(){
 
-		$fechaDesde = DrinkUtils::getFirstDayOfMonth( new \Datetime() );
-		$fechaHasta = DrinkUtils::getLastDayOfMonth( new \Datetime());
-	
+		$fechaDesde = DrinkUtils::getFirstDayOfMonth( new Datetime() );
+		$fechaHasta = DrinkUtils::getLastDayOfMonth( new Datetime());
+
 		$this->setFechaDesde( $fechaDesde );
 		$this->setFechaHasta( $fechaHasta );
-			
+
 	}
-	
+
 	public function ventasAnioActual(){
 
-		$fechaDesde = DrinkUtils::getFirstDayOfYear( new \Datetime() );
-		$fechaHasta = DrinkUtils::getLastDayOfYear( new \Datetime());
-	
+		$fechaDesde = DrinkUtils::getFirstDayOfYear( new Datetime() );
+		$fechaHasta = DrinkUtils::getLastDayOfYear( new Datetime());
+
 		$this->setFechaDesde( $fechaDesde );
 		$this->setFechaHasta( $fechaHasta );
-	}						
-				
+	}
+
 	public function ventasImpagas(){
 
 		$this->setEstados( array(EstadoVenta::PagadaParcialmente,EstadoVenta::Impaga) );
-			
-	}				
+
+	}
 
 	public function ventasAnuladas(){
 
 		$this->setEstado( EstadoVenta::Anulada );
 	}
-	
+
 	public function getMes()
 	{
 	    return $this->mes;
@@ -219,7 +253,7 @@ class UIVentaCriteria extends UIDrinkCriteria{
 	{
 	    $this->mes = $mes;
 	}
-	
+
 	public function getYear()
 	{
 	    return $this->year;
@@ -229,7 +263,7 @@ class UIVentaCriteria extends UIDrinkCriteria{
 	{
 	    $this->year = $year;
 	}
-	
+
 	public function getVendedor()
 	{
 	    return $this->vendedor;
@@ -239,5 +273,5 @@ class UIVentaCriteria extends UIDrinkCriteria{
 	{
 	    $this->vendedor = $vendedor;
 	}
-	
+
 }

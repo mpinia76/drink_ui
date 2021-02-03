@@ -38,6 +38,8 @@ use Drink\Core\model\EstadoGasto;
 
 use Drink\UI\service\UIServiceFactory;
 
+use Rasty\security\RastySecurityContext;
+
 /**
  * Utilidades para el sistema cuentas ui.
  *
@@ -782,13 +784,28 @@ class DrinkUIUtils {
 		return $estilos[$estadoGasto];
 	}
 
-	public static function getEstadoVentaCss($estadoVenta){
-		$estilos = array(
-						EstadoVenta::Pagada=> "bg-lightGreen fg-black",
-						EstadoVenta::Impaga=> "bg-yellow fg-black",
-						EstadoVenta::PagadaParcialmente=> "bg-orange fg-black",
-						EstadoVenta::Anulada=> "bg-crimson fg-white"
-						);
+	public static function getEstadoVentaCss($estadoVenta, $userName){
+
+
+        $user = DrinkUtils::getUserByUsername($userName);
+
+        if( DrinkUtils::isAdmin($user)) {
+            $estilos = array(
+                EstadoVenta::Pagada=> "bg-lightGreen fg-black",
+                EstadoVenta::Impaga=> "bg-yellow fg-black",
+                EstadoVenta::PagadaParcialmente=> "bg-orange fg-black",
+                EstadoVenta::Anulada=> "bg-crimson fg-white"
+            );
+        }
+        else{
+            $estilos = array(
+                EstadoVenta::Pagada=> "bg-lighterBlue fg-black",
+                EstadoVenta::Impaga=> "bg-amber fg-black",
+                EstadoVenta::PagadaParcialmente=> "bg-red fg-black",
+                EstadoVenta::Anulada=> "bg-brown fg-white"
+            );
+        }
+
 
 		return $estilos[$estadoVenta];
 	}

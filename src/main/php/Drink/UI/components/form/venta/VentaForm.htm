@@ -505,18 +505,7 @@ $(function() {
 
 	text-align: left !important;
 }
-@media (max-width:770px) {
-    .venta_left{
-        width: 40%;
-    }
 
-}
-
-@media (min-width:770px) {
-    .venta_left{
-        width: 0%;
-    }
-}
 td.actions, .detalle button{
 
 	text-align: center;
@@ -567,7 +556,7 @@ display:none;
             </fieldset>
             <div id="accesosRapidos">
                 <!-- BEGIN:agregar_producto -->
-                <button class="shortcut" onclick="javascript: seleccionarProducto('{codigo}')"  title="{nombre}" >
+                <button class="shortcut" onclick="seleccionarProducto('{codigo}')"  title="{nombre}" >
                     <!--<img src="{logo}" alt="{nombre}">-->
                 </button>
                 <!-- END:agregar_producto -->

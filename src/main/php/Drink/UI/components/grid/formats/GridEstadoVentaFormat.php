@@ -18,21 +18,21 @@ use Rasty\i18n\Locale;
 class GridEstadoVentaFormat extends  GridValueFormat{
 
 	private $pattern;
-	
+
 	public function format( $value, $item=null ){
-		
+
 		if( !empty($value))
 			return  Locale::localize( EstadoVenta::getLabel( $value ) );
-		else $value;	
-	}		
-	
-	public function getColumnCssClass($value, $item=null){
-	
-		return DrinkUIUtils::getEstadoVentaCss($value);
+		else $value;
 	}
-	
+
+	public function getColumnCssClass($value, $item=null){
+
+		//return DrinkUIUtils::getEstadoVentaCss($value,'melisa');
+	}
+
 	public function getPattern(){
 		return $this->pattern;
 	}
-	
+
 }

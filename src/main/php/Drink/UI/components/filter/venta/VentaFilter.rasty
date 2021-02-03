@@ -21,13 +21,13 @@
 		<param name="name" value="str:cliente" />
 		<param name="value" value="criteria.cliente" />
 		<param name="placeholder" value="msg:venta.cliente" />
-		
+
 	</component>
 	<component id="observaciones" type="InputText">
 		<param name="name" value="str:observaciones" />
 		<param name="value" value="criteria.observaciones" />
 		<param name="placeholder" value="msg:venta.observaciones" />
-		
+
 	</component>
 
 

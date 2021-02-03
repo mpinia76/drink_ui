@@ -37,6 +37,8 @@ use Drink\Core\model\Vendedor;
 use Rasty\utils\LinkBuilder;
 use Rasty\security\RastySecurityContext;
 
+use Drink\Core\utils\DrinkUtils;
+
 use Rasty\utils\Logger;
 
 /**
@@ -283,7 +285,21 @@ class VentaForm extends Form{
 
 	public function getVendedores(){
 
-		$vendedores = UIServiceFactory::getUIVendedorService()->getList( new UIVendedorCriteria());
+	    $user = RastySecurityContext::getUser();
+
+        $user = DrinkUtils::getUserByUsername($user->getUsername());
+
+        if( DrinkUtils::isAdmin($user)){
+            $vendedores = UIServiceFactory::getUIVendedorService()->getList( new UIVendedorCriteria());
+        }
+        else{
+            $vendedor = UIServiceFactory::getUIVendedorService()->get(DrinkUtils::DRINK_VENDEDOR_MELISA);
+            $criteria = new UIVendedorCriteria();
+            $criteria->setNombre($vendedor->getNombre());
+            $vendedores = UIServiceFactory::getUIVendedorService()->getList($criteria);
+        }
+
+
 
 		return $vendedores;
 	}
