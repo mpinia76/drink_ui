@@ -82,7 +82,7 @@ class Login extends Action{
 	}
 
 	protected function getForwardEmpleado(){
-		return "Ventas";
+		return "VentasHome";
 	}
 
 	protected function getForwardAdmin(){

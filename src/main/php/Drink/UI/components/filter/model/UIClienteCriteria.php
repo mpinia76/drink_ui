@@ -6,11 +6,13 @@ use Drink\UI\components\filter\model\UIDrinkCriteria;
 
 use Rasty\utils\RastyUtils;
 use Drink\Core\criteria\ClienteCriteria;
+use Rasty\security\RastySecurityContext;
+use Drink\Core\utils\DrinkUtils;
 
 /**
  * Representa un criterio de búsqueda
  * para clientes.
- * 
+ *
  * @author Marcos
  * @since 02/03/2018
  *
@@ -22,13 +24,23 @@ class UIClienteCriteria extends UIDrinkCriteria{
 	private $documento;
 	private $tieneCtaCte;
 	private $tipoCliente;
-	
+
 	public function __construct(){
 
 		parent::__construct();
+        $user = RastySecurityContext::getUser();
+
+        $user = DrinkUtils::getUserByUsername($user->getUsername());
+
+        if( DrinkUtils::isAdmin($user)) {
+
+        }
+        else{
+            $this->setTipoCliente(2);
+        }
 
 	}
-		
+
 	public function getNombre()
 	{
 	    return $this->nombre;
@@ -39,20 +51,20 @@ class UIClienteCriteria extends UIDrinkCriteria{
 	    $this->nombre = $nombre;
 	}
 
-	
+
 	protected function newCoreCriteria(){
 		return new ClienteCriteria();
 	}
-	
+
 	public function buildCoreCriteria(){
-		
+
 		$criteria = parent::buildCoreCriteria();
-				
+
 		$criteria->setNombre( $this->getNombre() );
 		$criteria->setDocumento( $this->getDocumento() );
 		$criteria->setTieneCtaCte( $this->getTieneCtaCte() );
 		$criteria->setTipoCliente( $this->getTipoCliente() );
-		
+
 		return $criteria;
 	}
 
@@ -66,7 +78,7 @@ class UIClienteCriteria extends UIDrinkCriteria{
 	{
 	    $this->documento = $documento;
 	}
-	
+
 	public function getTieneCtaCte()
 	{
 	    return $this->tieneCtaCte;

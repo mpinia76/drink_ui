@@ -16,6 +16,9 @@ use Rasty\utils\XTemplate;
 use Rasty\utils\LinkBuilder;
 use Rasty\utils\RastyUtils;
 
+use Rasty\security\RastySecurityContext;
+use Drink\Core\utils\DrinkUtils;
+
 /**
  * Filtro para buscar clientes
  *
@@ -62,6 +65,18 @@ class ClienteCtaCteFilter extends Filter{
 
 		//$xtpl->assign("linkSeleccionar",  LinkBuilder::getPageUrl( "HistoriaClinica") );
 		$xtpl->assign("linkSeleccionar",  LinkBuilder::getPageUrl( "ClienteModificar") );
+
+
+        $user = RastySecurityContext::getUser();
+
+        $user = DrinkUtils::getUserByUsername($user->getUsername());
+
+        if( DrinkUtils::isAdmin($user)) {
+            $xtpl->assign("isAdmin",  1 );
+        }
+        else{
+            $xtpl->assign("isAdmin",  0 );
+        }
 
 
 	}

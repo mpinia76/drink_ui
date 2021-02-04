@@ -52,6 +52,14 @@ $(document).ready(function(){
          }
      });
 
+	 if ($("#isAdmin").val()=='1'){
+         $("#divTipoCliente").show();
+     }
+	 else{
+         $("#divTipoCliente").hide();
+     }
+
+
 });
 
 
@@ -85,7 +93,7 @@ $(document).ready(function(){
 
 
 		<div class="criteria_right">
-			<div class="item" style="min-width: {minWidth};">
+			<div class="item" style="min-width: {minWidth};" id="divTipoCliente">
 			    <label for="tipoCliente">{lbl_tipoCliente}:</label>
 		    	<rasty id="tipoCliente" />
 			</div>
@@ -101,6 +109,7 @@ $(document).ready(function(){
 	<input type="hidden" id="orderBy" name="orderBy">
 	<input type="hidden" id="orderByType" name="orderByType" value="ASC">
 	<input type="hidden" id="page" name="page" value="1">
+    <input type="hidden" name="isAdmin" id="isAdmin" value="{isAdmin}">
 
 </form>
 <form  class="cuentas_form" id="buttons{id}">

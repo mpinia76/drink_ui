@@ -474,12 +474,27 @@ $(function() {
 
 <style>
 
-#findentity_detalleProducto_inputCode{
-	width: 50%;
-}
-#findentity_detalleProducto_autocomplete{
-	width: 40%;
-}
+    @media (max-width:770px) {
+        #findentity_detalleProducto_inputCode{
+            width: 10%;
+        }
+        #findentity_detalleProducto_autocomplete{
+            width: 80%;
+        }
+
+    }
+
+    @media (min-width:770px) {
+        #findentity_detalleProducto_inputCode{
+            width: 50%;
+        }
+        #findentity_detalleProducto_autocomplete{
+            width: 40%;
+        }
+    }
+
+
+
 
 .item{
 

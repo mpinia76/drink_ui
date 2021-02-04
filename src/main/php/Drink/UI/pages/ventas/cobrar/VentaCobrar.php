@@ -78,26 +78,29 @@ class VentaCobrar extends DrinkPage{
 		$xtpl->assign( "lbl_pendiente", $this->localize( "forma.pago.pendiente") );
 
 
-		$xtpl->assign( "linkCobrarEfectivo", $this->getLinkActionCobrarVentaEfectivo($this->getVenta()) );
-		$xtpl->parse( "main.forma_pago_caja");
+
 
         $user = RastySecurityContext::getUser();
 
         $user = DrinkUtils::getUserByUsername($user->getUsername());
 
         if( DrinkUtils::isAdmin($user)) {
+            $xtpl->assign( "linkCobrarEfectivo", $this->getLinkActionCobrarVentaEfectivo($this->getVenta()) );
+            $xtpl->parse( "main.forma_pago_caja");
+
+
             $xtpl->assign("linkCobrarTarjeta", $this->getLinkCobrarVentaTarjeta($this->getVenta()));
             $xtpl->parse("main.forma_pago_tarjeta");
         }
 
 		$xtpl->assign( "linkAnular", $this->getLinkVentaAnular( $this->getVenta()) );
 
-        if( DrinkUtils::isAdmin($user)) {
-            if ($this->getVenta()->getCliente()->hasCuentaCorriente()) {
-                $xtpl->assign("linkCobrarCtaCte", $this->getLinkActionCobrarVentaCtaCte($this->getVenta()));
-                $xtpl->parse("main.forma_pago_ctacte");
-            }
+
+        if ($this->getVenta()->getCliente()->hasCuentaCorriente()) {
+            $xtpl->assign("linkCobrarCtaCte", $this->getLinkActionCobrarVentaCtaCte($this->getVenta()));
+            $xtpl->parse("main.forma_pago_ctacte");
         }
+
 
 		$backTo = $this->getBackTo();
 		if( empty($backTo) ){

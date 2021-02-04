@@ -6,7 +6,7 @@
 
 	<page name="AdminHome"   location="pages/home/AdminHome.page" url="admin/home"/>
 	<page name="AdminMovimientos"   location="pages/home/AdminMovimientos.page" url="admin/movimientos"/>
-
+    <page name="VentasHome"   location="pages/home/VentasHome.page" url="admin/ventas"/>
 
 	<page name="TiposProducto"   location="pages/tiposProducto/TiposProducto.page" url="tiposProducto"/>
 	<page name="TipoProductoAgregar"   location="pages/tiposProducto/agregar/TipoProductoAgregar.page" url="tiposProducto/agregar"/>
