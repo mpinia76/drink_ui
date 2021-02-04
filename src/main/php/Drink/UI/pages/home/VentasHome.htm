@@ -1,0 +1,70 @@
+<!-- BEGIN: main-->
+<style>
+.totales-data-subtitle{
+	color: inherit;
+    display: block;
+    font-size: 12pt;
+}
+.totales-data-title{
+	color: inherit;
+    display: block;
+    font-size: 14pt;
+    text-align: right;
+    padding: 5px;
+}
+</style>
+<div class="tile-area tile-area-mj" style="width: 1390px;">
+
+        <h2 class="tile-area-title fg-white">
+        	{app_title} <span class="fg-white">{app_subtitle}</span>
+        </h2>
+
+
+
+
+
+
+
+
+
+        <div class="tile-group double">
+
+            <div class="tile-group-title">{menu_ventas}/{menu_gastos}</div>
+
+
+
+            <a class="tile bg-amber" href="{linkVentas}">
+                <div class="tile-content icon">
+                    <span class="icon-ventas"></span>
+                </div>
+                <div class="brand">
+                    <div class="label">{menu_ventas}</div>
+                </div>
+            </a><!-- end tile gastos-->
+            <a class="tile  bg-amber" href="{linkVentaAgregar}">
+                <div class="tile-content icon">
+                    <span class="icon-nueva-venta"></span>
+                </div>
+                <div class="brand">
+                    <div class="label">{menu_ventas_agregar}</div>
+                </div>
+            </a>
+            <a class="tile  bg-darkBlue" href="{linkClienteAgregar}">
+                <div class="tile-content icon">
+                    <span class="icon-clientes"></span>
+                </div>
+                <div class="brand">
+                    <div class="label">{menu_clientes_agregar}</div>
+                </div>
+            </a><!-- end tile gastos-->
+
+
+        </div> <!-- End group -->
+
+
+
+
+
+
+    </div>
+<!-- END: main-->
