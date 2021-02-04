@@ -22,10 +22,35 @@
 
 
 
+    <div class="user-id">
+
+        <div class="user-id-image">
+            <a href="#" class="icon-user no-display1 dropdown-toggle">
+            </a>
+            <ul data-role="dropdown" class="dropdown-menu place-right" style="display: none;">
+
+                <!-- BEGIN: menuOptionProfile -->
+                <li><a href="#" onclick="{onclick}" ><!-- BEGIN: image --><img style="border:0;margin-right:10px;width:24px;height: 24px;" src="{src}"/><!-- END: image --> {label}</a></li>
+                <!-- END: menuOptionProfile -->
+
+                <!-- BEGIN: menuOptionExit -->
+                <li><a class="element" href="#" onclick="{onclick}" ><!-- BEGIN: image --><img style="border:0;margin-right:10px;width:24px;height: 24px;" src="{src}"/><!-- END: image -->{label}</a></li>
+                <!-- END: menuOptionExit -->
+
+            </ul>
+        </div>
+        <div class="user-id-name">
+            <!-- span class="first-name">{user}</span-->
+            <span class="last-name" >{user}</span>
+        </div>
+
+    </div>
 
 
+    <div class="tile-group double ocultarMovil">
+        <img border="0" alt="logo" name="imLogo" id="imLogo" src="{WEB_PATH}/css/images/logo.jpg">
 
-
+    </div>
 
         <div class="tile-group double">
 
