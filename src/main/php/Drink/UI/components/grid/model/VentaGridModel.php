@@ -28,6 +28,9 @@ use Rasty\Menu\menu\model\MenuGroup;
 use Rasty\Menu\menu\model\MenuActionOption;
 use Rasty\Menu\menu\model\MenuActionAjaxOption;
 
+use Rasty\security\RastySecurityContext;
+use Drink\Core\utils\DrinkUtils;
+
 /**
  * Model para la grilla de Ventas.
  *
@@ -190,17 +193,36 @@ class VentaGridModel extends EntityGridModel{
 	}
 
 	public function getHeaderContent(){
-		/*$filter = $this->getFilter();
-		$filter->fill( $this->getDefaultOrderField(), $this->getDefaultOrderType() );
-		//print_r($filter->getCriteria());
-		$service = $this->getService();
+
+        $user = RastySecurityContext::getUser();
+
+        $user = DrinkUtils::getUserByUsername($user->getUsername());
+
+        if( DrinkUtils::isAdmin($user)) {
+
+        }
+        else{
+            $filter = $this->getFilter();
+            $filter->fill( $this->getDefaultOrderField(), $this->getDefaultOrderType() );
+            $service = UIServiceFactory::getUIVentaService();
+
+            $criteria = new UIVentaCriteria();
+            $criteria->setFiltroPredefinido(0);
+            $criteria->setFechaDesde($filter->getCriteria()->getFechaDesde());
+            $criteria->setFechaHasta($filter->getCriteria()->getFechaHasta());
+            $criteria->setUser($user);
+            $arraySaldo = $service->getTotales($criteria);
+
+
+            $todoString = 'Bruto: <strong>'.DrinkUIUtils::formatMontoToView($arraySaldo['saldo']).'</strong> Neto: <strong>'.DrinkUIUtils::formatMontoToView($arraySaldo['ganancia']).'</strong> Comisión: <strong>'.DrinkUIUtils::formatMontoToView($arraySaldo['comision']).'</strong>';
 
 
 
+            return $todoString;
+        }
 
 
-
-		return 'Bruto: <strong>'.DrinkUIUtils::formatMontoToView($service->getTotales($filter->getCriteria())).'</strong> Neto: <strong>'.DrinkUIUtils::formatMontoToView($service->getGanancias($filter->getCriteria())).'</strong>';*/
+		/**/
 	}
 
 }
