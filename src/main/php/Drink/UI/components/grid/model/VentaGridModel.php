@@ -214,7 +214,7 @@ class VentaGridModel extends EntityGridModel{
             $arraySaldo = $service->getTotales($criteria);
 
 
-            $todoString = 'Bruto: <strong>'.DrinkUIUtils::formatMontoToView($arraySaldo['saldo']).'</strong> Neto: <strong>'.DrinkUIUtils::formatMontoToView($arraySaldo['ganancia']).'</strong> Comisión: <strong>'.DrinkUIUtils::formatMontoToView($arraySaldo['comision']).'</strong>';
+            $todoString = 'Bruto: <strong>'.DrinkUIUtils::formatMontoToView($arraySaldo['saldo']).'</strong> Comisión: <strong>'.DrinkUIUtils::formatMontoToView($arraySaldo['comision']).'</strong>';
 
 
 
