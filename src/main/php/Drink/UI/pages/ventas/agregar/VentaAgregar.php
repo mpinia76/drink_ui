@@ -38,6 +38,7 @@ class VentaAgregar extends DrinkPage{
 			$venta->setCliente($cliente );
 		}
 		else{
+
 			$venta->setCliente( DrinkUtils::getClienteDefault() );
 		}
 

@@ -11,6 +11,7 @@ use Drink\UI\service\finder\MarcaProductoFinder;
 
 
 use Drink\UI\components\filter\model\UIVendedorCriteria;
+use Drink\UI\components\filter\model\UIClienteCriteria;
 
 use Drink\UI\service\finder\VendedorFinder;
 
@@ -303,6 +304,18 @@ class VentaForm extends Form{
 
 		return $vendedores;
 	}
+
+
+    public function getClientes(){
+
+
+            $clientes = UIServiceFactory::getUIClienteService()->getList( new UIClienteCriteria());
+
+
+
+
+        return $clientes;
+    }
 
 	public function getLinkActionAgregarCliente(){
 

@@ -68,6 +68,17 @@
 		<param name="popupFormCallback" value="str:VentaAgregar" />
 	</component>
 
+    <component id="cliente1" type="InputCombo">
+    		<param name="inputId" value="str:cliente1" />
+    		<param name="name" value="str:cliente1" />
+    		<param name="value" value="venta.cliente" />
+    		<param name="options" value="clientes" />
+    		<param name="finder" value="clienteFinderClazz" />
+    		<param name="placeholder" value="msg:venta.cliente" />
+    		<param name="emptyOptionLabel" value="msg:criteria.sin_especificar" />
+    		<param name="requiredMessage" value="msg:venta.cliente.required" />
+    	</component>
+
 	<component id="vendedor" type="InputCombo">
 		<param name="inputId" value="str:vendedor" />
 		<param name="name" value="str:vendedor" />

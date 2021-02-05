@@ -415,7 +415,13 @@ function marcaProductochange( ){
 
 }
 
-
+function validar(){
+    if ($('#divClienteDesktop').is(':hidden'))
+        $('#cliente1').val($('#cliente').val());
+    else
+        $('#cliente').val($('#cliente1').val());
+    validate('venta_form');
+}
 
 function submitBuscarAccesosRapidos(webpath){
 
@@ -468,6 +474,8 @@ $(function() {
         this.select();
     });
     submitBuscarAccesosRapidos("{WEB_PATH}");
+
+    $("#cliente1").select2("val", $('#cliente').val());
 
 });
 </script>
@@ -585,7 +593,7 @@ display:none;
     <div class="venta_right">
 
 
-	<form class="cuentas_form" id="venta_form" onsubmit="return validate('venta_form');" action="{action}" method="{method}">
+	<form class="cuentas_form" id="venta_form" onsubmit="return validar();" action="{action}" method="{method}">
 
 	<fieldset>
 		<legend>{legend}</legend>
@@ -599,12 +607,20 @@ display:none;
 		    <rasty id="fecha" />
 		</div>
 		<div class="row">
-			<div class="col-8">
+			<div id="divClienteDesktop" class="col-8 mostrarMovil">
 				<div class="item">
 				    <label for="cliente">{lbl_cliente} *:</label>
-		    		<rasty id="cliente" />
+		    		<rasty id="cliente1" />
 				</div>
 			</div>
+
+            <div id="divClienteMovil" class="col-8 ocultarMovil">
+                <div class="item">
+                    <label for="cliente">{lbl_cliente} *:</label>
+                    <rasty id="cliente" />
+                </div>
+            </div>
+
 			<div class="col-3">
 				<div class="item">
 				    <label for="vendedor">{lbl_vendedor}:</label>
