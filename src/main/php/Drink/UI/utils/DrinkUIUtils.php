@@ -784,12 +784,12 @@ class DrinkUIUtils {
 		return $estilos[$estadoGasto];
 	}
 
-	public static function getEstadoVentaCss($estadoVenta, $userName){
+	public static function getEstadoVentaCss($estadoVenta, $vendedor){
 
 
-        $user = DrinkUtils::getUserByUsername($userName);
+        //$user = DrinkUtils::getUserByUsername($userName);
 
-        if( DrinkUtils::isAdmin($user)) {
+        if( !$vendedor->getMayorista()) {
             $estilos = array(
                 EstadoVenta::Pagada=> "bg-lightGreen fg-black",
                 EstadoVenta::Impaga=> "bg-yellow fg-black",

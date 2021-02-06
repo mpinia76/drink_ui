@@ -10,7 +10,7 @@ use Drink\Core\criteria\MovimientoCajaCriteria;
 /**
  * Representa un criterio de búsqueda
  * para movimientos de cuenta.
- * 
+ *
  * @author Marcos
  * @since 14/03/2018
  *
@@ -19,35 +19,35 @@ class UIMovimientoCajaCriteria extends UIDrinkCriteria{
 
 
 	private $fecha;
-	
+
 	private $fechaDesde;
-	
+
 	private $fechaHasta;
-	
+
 	private $cuenta;
-	
+
 	private $cuentas;
-		
+
 	public function __construct(){
 
 		parent::__construct();
 
 	}
-		
+
 	protected function newCoreCriteria(){
 		return new MovimientoCajaCriteria();
 	}
-	
+
 	public function buildCoreCriteria(){
-		
+
 		$criteria = parent::buildCoreCriteria();
-				
+
 		$criteria->setFecha( $this->getFecha() );
 		$criteria->setFechaDesde( $this->getFechaDesde() );
 		$criteria->setFechaHasta( $this->getFechaHasta() );
 		$criteria->setCuenta( $this->getCuenta() );
 		$criteria->setCuentas( $this->getCuentas() );
-		
+
 		return $criteria;
 	}
 
@@ -82,7 +82,7 @@ class UIMovimientoCajaCriteria extends UIDrinkCriteria{
 	    $this->fechaHasta = $fechaHasta;
 	}
 
-	
+
 
 	public function getCuenta()
 	{

@@ -3,6 +3,7 @@ namespace Drink\UI\components\filter\model;
 
 
 use Datetime;
+use Drink\UI\service\UIServiceFactory;
 use Drink\UI\utils\DrinkUIUtils;
 use Drink\Core\utils\DrinkUtils;
 use Drink\Core\model\EstadoVenta;
@@ -84,7 +85,8 @@ class UIVentaCriteria extends UIDrinkCriteria{
 
         }
         else{
-            $this->setUser($user);
+            $vendedor = UIServiceFactory::getUIVendedorService()->get(DrinkUtils::DRINK_VENDEDOR_MELISA);
+            $this->setVendedor($vendedor);
         }
 
 

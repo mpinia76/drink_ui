@@ -115,7 +115,7 @@ class VentaGridModel extends EntityGridModel{
 
 	public function getRowStyleClass($item){
 
-		return DrinkUIUtils::getEstadoVentaCss($item->getEstado(),$item->getUser()->getUsername());
+		return DrinkUIUtils::getEstadoVentaCss($item->getEstado(),$item->getVendedor());
 
 	}
 
