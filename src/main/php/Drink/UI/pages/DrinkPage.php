@@ -313,7 +313,7 @@ abstract class DrinkPage extends RastyPage{
 
 	}
 
-	public function getLinkActionPagarGasto(Gasto $gasto, Cuenta $cuenta, $backTo ="CajaHome"){
+	public function getLinkActionPagarGasto(Gasto $gasto, Cuenta $cuenta, $backTo ="AdminHome"){
 
 
 
@@ -469,7 +469,7 @@ abstract class DrinkPage extends RastyPage{
 
 	}
 
-	public function getLinkPedidoAgregar($backTo = "CajaHome"){
+	public function getLinkPedidoAgregar($backTo = "PedidoPagar"){
 
 
 
@@ -483,7 +483,7 @@ abstract class DrinkPage extends RastyPage{
 
 	}
 
-	public function getLinkActionPagarPedido(Pedido $pedido, Cuenta $cuenta, $backTo ="CajaHome"){
+	public function getLinkActionPagarPedido(Pedido $pedido, Cuenta $cuenta, $backTo ="AdminHome"){
 
 		return LinkBuilder::getActionUrl( "PagarPedido", array("pedidoOid"=>$pedido->getOid(),
 																"cuentaOid"=>$cuenta->getOid(),
