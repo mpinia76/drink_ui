@@ -210,7 +210,11 @@ class VentaGridModel extends EntityGridModel{
             $criteria->setFiltroPredefinido(0);
             $criteria->setFechaDesde($filter->getCriteria()->getFechaDesde());
             $criteria->setFechaHasta($filter->getCriteria()->getFechaHasta());
-            $criteria->setUser($user);
+
+            $vendedor = UIServiceFactory::getUIVendedorService()->get(DrinkUtils::DRINK_VENDEDOR_MELISA);
+            $criteria->setVendedor($vendedor);
+
+            //$criteria->setUser($user);
             $arraySaldo = $service->getTotales($criteria);
 
 
