@@ -32,12 +32,12 @@ class UIClienteCriteria extends UIDrinkCriteria{
 
         $user = DrinkUtils::getUserByUsername($user->getUsername());
 
-        if( DrinkUtils::isAdmin($user)) {
+        /*if( DrinkUtils::isAdmin($user)) {
 
         }
         else{
             $this->setTipoCliente(2);
-        }
+        }*/
 
 	}
 
