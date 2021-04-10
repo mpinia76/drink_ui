@@ -810,6 +810,7 @@ class DrinkUIUtils {
 		return $estilos[$estadoVenta];
 	}
 
+
 	public static function getEstadoPagoCss($estadoPago){
 		$estilos = array(
 						EstadoPago::Pendiente=> "bg-yellow fg-black",
