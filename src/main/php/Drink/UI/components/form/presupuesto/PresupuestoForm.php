@@ -137,7 +137,9 @@ class PresupuestoForm extends Form{
 
 		$xtpl->assign("linkConsultarMayorista", $this->getLinkActionConsultarMayorista() );
 
-		$xtpl->assign("mayorista", 0 );
+        $oVendedor = UIServiceFactory::getUIVendedorService()->get(DrinkUIUtils::getVendedorSession() );
+
+        $xtpl->assign("mayorista", $oVendedor->getMayorista() );
 
 
 

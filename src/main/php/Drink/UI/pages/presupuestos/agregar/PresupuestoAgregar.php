@@ -12,6 +12,8 @@ use Drink\Core\model\Presupuesto;
 use Rasty\Menu\menu\model\MenuGroup;
 use Rasty\Menu\menu\model\MenuOption;
 
+use Drink\UI\service\UIServiceFactory;
+
 
 use Rasty\utils\RastyUtils;
 
@@ -38,6 +40,8 @@ class PresupuestoAgregar extends DrinkPage{
 		else{
 			$presupuesto->setCliente( DrinkUtils::getClienteDefault() );
 		}
+
+        $presupuesto->setVendedor(UIServiceFactory::getUIVendedorService()->get(DrinkUIUtils::getVendedorSession() ));
 
 		$this->setPresupuesto($presupuesto);
 

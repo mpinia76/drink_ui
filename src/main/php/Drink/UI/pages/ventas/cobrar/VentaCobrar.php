@@ -84,14 +84,14 @@ class VentaCobrar extends DrinkPage{
 
         $user = DrinkUtils::getUserByUsername($user->getUsername());
 
-        if( DrinkUtils::isAdmin($user)) {
+        //if( DrinkUtils::isAdmin($user)) {
             $xtpl->assign( "linkCobrarEfectivo", $this->getLinkActionCobrarVentaEfectivo($this->getVenta()) );
             $xtpl->parse( "main.forma_pago_caja");
 
 
             $xtpl->assign("linkCobrarTarjeta", $this->getLinkCobrarVentaTarjeta($this->getVenta()));
             $xtpl->parse("main.forma_pago_tarjeta");
-        }
+        //}
 
 		$xtpl->assign( "linkAnular", $this->getLinkVentaAnular( $this->getVenta()) );
 

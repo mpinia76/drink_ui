@@ -290,7 +290,7 @@ class VentaForm extends Form{
 
         $user = DrinkUtils::getUserByUsername($user->getUsername());
 
-        if( DrinkUtils::isAdmin($user)){
+        /*if( DrinkUtils::isAdmin($user)){
             $vendedores = UIServiceFactory::getUIVendedorService()->getList( new UIVendedorCriteria());
         }
         else{
@@ -298,9 +298,9 @@ class VentaForm extends Form{
             $criteria = new UIVendedorCriteria();
             $criteria->setNombre($vendedor->getNombre());
             $vendedores = UIServiceFactory::getUIVendedorService()->getList($criteria);
-        }
+        }*/
 
-
+        $vendedores = UIServiceFactory::getUIVendedorService()->getList( new UIVendedorCriteria());
 
 		return $vendedores;
 	}

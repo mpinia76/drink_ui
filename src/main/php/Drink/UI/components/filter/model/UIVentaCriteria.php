@@ -81,13 +81,13 @@ class UIVentaCriteria extends UIDrinkCriteria{
 
         $user = DrinkUtils::getUserByUsername($user->getUsername());
 
-        if( DrinkUtils::isAdmin($user)) {
+        /*if( DrinkUtils::isAdmin($user)) {
 
         }
         else{
             $vendedor = UIServiceFactory::getUIVendedorService()->get(DrinkUtils::DRINK_VENDEDOR_MELISA);
             $this->setVendedor($vendedor);
-        }
+        }*/
 
 
 		//$this->setFiltroPredefinido( self::HOY );

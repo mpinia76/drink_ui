@@ -211,14 +211,15 @@ class VentaGridModel extends EntityGridModel{
             $criteria->setFechaDesde($filter->getCriteria()->getFechaDesde());
             $criteria->setFechaHasta($filter->getCriteria()->getFechaHasta());
 
-            $vendedor = UIServiceFactory::getUIVendedorService()->get(DrinkUtils::DRINK_VENDEDOR_MELISA);
-            $criteria->setVendedor($vendedor);
+            /*$vendedor = UIServiceFactory::getUIVendedorService()->get(DrinkUtils::DRINK_VENDEDOR_MELISA);
+            $criteria->setVendedor($vendedor);*/
 
             //$criteria->setUser($user);
             $arraySaldo = $service->getTotales($criteria);
 
 
-            $todoString = 'Bruto: <strong>'.DrinkUIUtils::formatMontoToView($arraySaldo['saldo']).'</strong> Comisión: <strong>'.DrinkUIUtils::formatMontoToView($arraySaldo['comision']).'</strong>';
+            //$todoString = 'Bruto: <strong>'.DrinkUIUtils::formatMontoToView($arraySaldo['saldo']).'</strong> Comisión: <strong>'.DrinkUIUtils::formatMontoToView($arraySaldo['comision']).'</strong>';
+            $todoString = 'Comisión: <strong>'.DrinkUIUtils::formatMontoToView($arraySaldo['comision']).'</strong>';
 
 
 
