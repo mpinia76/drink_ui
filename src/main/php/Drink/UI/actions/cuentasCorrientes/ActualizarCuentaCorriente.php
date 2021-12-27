@@ -24,48 +24,54 @@ use Rasty\Forms\input\InputNumber;
 
 /**
  * se cobra deuda de una cuenta corriente
- * 
+ *
  * Es una transferencia entre la cuenta corriente seleccionada y la cuenta destino (caja chica o caja del día)
- * 
+ *
  * @author Marcos
  * @since 13-02-2020
  */
 class ActualizarCuentaCorriente extends Action{
 
-	
+
 	public function execute(){
 
 		$forward = new Forward();
-		
+
 		//tomamos el monto a depositar
 		$number = new InputNumber();
 		$monto = $number->formatValue( RastyUtils::getParamPOST("monto") );
 		$observaciones = RastyUtils::getParamPOST("observaciones");
 		$clienteOid = RastyUtils::getParamPOST("cliente");
 		//$destinoOid = RastyUtils::getParamPOST("destino");
-		
+
 		try {
 
 			$cliente = UIServiceFactory::getUIClienteService()->get($clienteOid);
 			$destino = UIServiceFactory::getUICuentaService()->get(1);
-			
+
 			UIServiceFactory::getUICuentaCorrienteService()->actualizarDeuda($cliente, $destino, $monto, $observaciones);
-			$forward->setPageName( "AdminHome" );
-		
-			
+
+            if( DrinkUIUtils::isAdminLogged()) {
+                $forward->setPageName( "AdminHome" );
+            }
+            else{
+                $forward->setPageName( "VentasHome" );
+            }
+
+
 		} catch (RastyException $e) {
-		
+
 			$forward->setPageName( "ActualizarCtaCte" );
 			$forward->addParam( "monto", $monto );
 			$forward->addParam( "observaciones", $observaciones );
-			
-			
+
+
 			$forward->addError( Locale::localize($e->getMessage())  );
-			
+
 		}
-		
+
 		return $forward;
-		
+
 	}
 
 }
