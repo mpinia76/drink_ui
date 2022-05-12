@@ -81,10 +81,10 @@ class HeaderNav extends RastyComponent{
 			//$menuGroup->addMenuOption( $this->getMenuCuentas() );
 			$menuGroups[] =  $this->getMenuCuentas() ;
 
-
+		}
 			//$menuGroup->addMenuOption( $this->getMenuProductos() );
 			$menuGroups[] =  $this->getMenuProductos();
-
+		if( DrinkUIUtils::isAdminLogged() ){
 			//$menuGroup->addMenuOption( $this->getMenuAgencia() );
 			$menuGroups[] =  $this->getMenuAgencia() ;
 
