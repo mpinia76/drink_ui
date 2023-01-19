@@ -45,6 +45,7 @@
 	<page name="StockProductoModificar"   location="pages/productos/stock/StockProductoModificar.page" url="productos/stock/modificar"/>
 
 	<page name="ProductosXLS"   location="pages/productos/ProductosXLS.page" url="productos/productosxls"/>
+	<page name="PreciosXLS"   location="pages/productos/PreciosXLS.page" url="productos/preciosxls"/>
 
 	<page name="Packs"   location="pages/packs/Packs.page" url="packs"/>
 	<page name="PackAgregar"   location="pages/packs/agregar/PackAgregar.page" url="packs/agregar"/>
@@ -217,9 +218,11 @@
 	<component name="VentaPDF"   location="components/pdf/venta"/>
 	<component name="PresupuestoPDF"   location="components/pdf/presupuesto"/>
 	<component name="ProductosPDF"   location="components/pdf/producto"/>
+	<component name="PreciosPDF"   location="components/pdf/producto"/>
 
 	<!-- xlss -->
 	<component name="ProductosXLS"   location="components/xls/producto"/>
+	<component name="PreciosXLS"   location="components/xls/producto"/>
 
 	<!-- layouts -->
 	<component name="DrinkMetroLayout" location="layouts" />

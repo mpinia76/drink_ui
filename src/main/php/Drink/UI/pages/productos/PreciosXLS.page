@@ -1,0 +1,12 @@
+<rasty specificationClass="Drink\UI\pages\productos\PreciosXLS" templateLocation="pages/productos/PreciosXLS.htm">
+
+	<param name="layoutType" value="str:DrinkXLSLayout" />
+
+
+	
+
+	 <component id="preciosXLS" type="PreciosXLS">
+		
+	</component> 
+	
+</rasty>

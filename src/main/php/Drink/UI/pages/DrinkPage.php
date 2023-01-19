@@ -244,6 +244,18 @@ abstract class DrinkPage extends RastyPage{
 
 	}
 
+	public function getLinkPreciosPdf(){
+
+		return LinkBuilder::getPdfUrl( "PreciosPDF") ;
+
+	}
+
+	public function getLinkPreciosXls(){
+
+		return LinkBuilder::getPageUrl( "PreciosXLS") ;
+
+	}
+
 	public function getLinkProductoAgregar(){
 
 		return LinkBuilder::getPageUrl( "ProductoAgregar") ;

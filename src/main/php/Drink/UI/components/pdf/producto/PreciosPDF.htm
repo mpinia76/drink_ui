@@ -64,8 +64,8 @@
   	<hr />
     <table>
 	<tr>
-	<td colspan="4">
-		<span style="font-size:16pt;font-weight: bold;">LISTADO DE PRODUCTOS</span>
+	<td colspan="2">
+		<span style="font-size:16pt;font-weight: bold;">LISTA DE PRECIOS</span>
 	</td>
 	</tr>
 	
@@ -73,23 +73,24 @@
 <hr />
 <div class="box_details">
 	
-
+	<!-- BEGIN:productos -->
 	
 	<table cellspacing="0" cellpadding="0" border="1">
-		<thead>
-		<tr><th width="450px">{lbl_detalle_nombre}</th><th width="100px">{lbl_detalle_stock}</th><th width="100px">{lbl_detalle_precio}</th><th width="100px">{lbl_detalle_total}</th></tr></thead>
+		<thead><tr><th colspan="2" align="center">{tipoproducto}</th></tr>
+		<tr><th width="450px">{lbl_detalle_nombre}</th><th width="100px">{lbl_detalle_precio}</th></tr></thead>
 		
 			<!-- BEGIN:detalle -->
-			<tr><td>{producto}</td><td style="text-align: right;">{stock}</td><td style="text-align: right;">{precio}</td><td style="text-align: right;">{total}</td></tr>
+			<tr><td>{producto}</td><td style="text-align: right;">{precio}</td></tr>
 			<!-- END:detalle -->
-
-		<tr><td colspan="3" style="text-align: right;">{lbl_detalle_total}</td><td style="text-align: right;">{totales}</td></tr>
+		
+		
 	</table>
 	
-
+	<!-- END:productos -->
 	
 </div>
-
+{htmlPacks}
+{htmlCombos}
   </div>
 </body>
 </html>

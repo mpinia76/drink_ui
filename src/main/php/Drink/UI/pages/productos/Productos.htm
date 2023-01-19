@@ -16,6 +16,17 @@ function listarProductosXLS(  ){
 	
 	
 }
+function listarPrecios(  ){
+	$("#input_submit_ajax_Producto").click();
+	window.open('{linkPreciosPdf}','_blank');
+
+}
+function listarPreciosXLS(  ){
+	$("#input_submit_ajax_Producto").click();
+	window.location.href='{linkPreciosXls}'
+
+
+}
 </script>
 <style>
 </style>
@@ -33,10 +44,18 @@ function listarProductosXLS(  ){
 	<fieldset>
 		
 		<!-- BEGIN: add -->
+		<button class="shortcut" onclick="listarPrecios()">
+			<i class="icon-pdf"></i>{lbl_pdf_precios}
+		</button>
+		
+		<button class="shortcut" onclick="listarPreciosXLS()">
+			<i class="icon-xls"></i>{lbl_pdf_precios}
+		</button>
+		<br>
 		<button class="shortcut" onclick="listarProductos()">
 			<i class="icon-pdf"></i>{lbl_pdf}
 		</button>
-		
+
 		<button class="shortcut" onclick="listarProductosXLS()">
 			<i class="icon-xls"></i>{lbl_pdf}
 		</button>

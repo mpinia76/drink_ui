@@ -89,9 +89,12 @@ class Productos extends DrinkPage{
 		
 		$productoFilter->fillFromSaved( $this->getProductoCriteria() );
 		
-		$xtpl->assign("lbl_pdf", $this->localize("menu.productos.precios") );
+		$xtpl->assign("lbl_pdf_precios", $this->localize("menu.productos.precios") );
+        $xtpl->assign("lbl_pdf", $this->localize("producto.stock") );
 		$xtpl->assign("linkPdf", $this->getLinkProductosPdf() );
 		$xtpl->assign("linkXls", $this->getLinkProductosXls() );
+        $xtpl->assign("linkPreciosPdf", $this->getLinkPreciosPdf() );
+        $xtpl->assign("linkPreciosXls", $this->getLinkPreciosXls() );
 		
 		$xtpl->parse("main.opciones.add");
 		$xtpl->parse("main.opciones");
