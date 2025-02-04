@@ -53,8 +53,8 @@ function addTrTotales($data, $table){
     $row.append($('<td/>', {'class' : 'totales importe'}).append());
     spanDebe = $("#spanDebe").text().replace('<span style=\'color:red;\'>','');
     spanDebe = spanDebe.replace('</span>','');
-    spanDebe = spanDebe.replace('.','');
-    spanDebe = spanDebe.replace(',','.');
+	spanDebe = spanDebe.replace(/\./g, '');
+	spanDebe = spanDebe.replace(',','.');
     spanDebe = spanDebe.replace('$','');
 
    if(spanDebe.indexOf("-")!=-1){
