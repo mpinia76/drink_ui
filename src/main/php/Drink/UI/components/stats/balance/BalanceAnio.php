@@ -56,6 +56,7 @@ class BalanceAnio extends RastyComponent{
 		$xtpl->assign("lbl_ganancia",  $this->localize( "balanceAnio.ganancia" ) );
 		$xtpl->assign("lbl_comisiones",  $this->localize( "venta.comision" ) );
         $xtpl->assign("lbl_gastos",  $this->localize( "balanceDia.gastos" ) );
+		$xtpl->assign("lbl_saldo",  $this->localize( "balanceDia.saldo" ) );
 		$xtpl->assign("detalle_mes_legend",  $this->localize( "balanceAnio.detalle_mes.legend" ) );
 
 
@@ -129,6 +130,12 @@ class BalanceAnio extends RastyComponent{
 		$xtpl->assign("totalGanancia",  'Negocio: '.DrinkUIUtils::formatMontoToView($ganancia).' - Hielo: '.DrinkUIUtils::formatMontoToView($saldos["gananciashielo"])  );
 		$xtpl->assign("totalComisiones",  'Negocio: '.DrinkUIUtils::formatMontoToView((-1)*$saldos["comisiones"]).' - Hielo: '.DrinkUIUtils::formatMontoToView((-1)*$saldos["comisioneshielo"])  );
         $xtpl->assign("totalGastos",  DrinkUIUtils::formatMontoToView((-1)*$gastoSaldo)  );
+
+		$mitadHielo = $saldos["gananciashielo"]/2;
+		$saldo = $ganancia + $mitadHielo - ($saldos["comisiones"]+$saldos["comisioneshielo"]+$gastoSaldo);
+
+		$xtpl->assign("totalSaldo",  DrinkUIUtils::formatMontoToView($saldo)  .' - Mitad Hielo '.DrinkUIUtils::formatMontoToView($mitadHielo));
+
 		if ($saldos['productos']) {
 			$productos='';
 
@@ -195,6 +202,13 @@ class BalanceAnio extends RastyComponent{
 			$xtpl->assign("ganancia",  'Negocio: '.DrinkUIUtils::formatMontoToView($ganancias).' - Hielo: '.DrinkUIUtils::formatMontoToView($saldos["gananciashielo"])  );
 			$xtpl->assign("comisiones",  'Negocio: '.DrinkUIUtils::formatMontoToView((-1)*$saldos["comisiones"]).' - Hielo: '.DrinkUIUtils::formatMontoToView((-1)*$saldos["comisioneshielo"])  );
             $xtpl->assign("gastos",  DrinkUIUtils::formatMontoToView((-1)*$gastoSaldoMes)  );
+
+			$mitadHielo = $saldos["gananciashielo"]/2;
+			$saldo = $ganancias + $mitadHielo - ($saldos["comisiones"]+$saldos["comisioneshielo"]+$gastoSaldoMes);
+
+			$xtpl->assign("saldo",  DrinkUIUtils::formatMontoToView($saldo)  .' - Mitad Hielo '.DrinkUIUtils::formatMontoToView($mitadHielo));
+
+
 			if ($saldos['productos']) {
 				$productos='';
 

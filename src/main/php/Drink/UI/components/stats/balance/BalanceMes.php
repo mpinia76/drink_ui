@@ -54,6 +54,7 @@ class BalanceMes extends RastyComponent{
 		$xtpl->assign("lbl_ganancias",  $this->localize( "balanceDia.ganancias" ) );
 		$xtpl->assign("lbl_comisiones",  $this->localize( "venta.comision" ) );
         $xtpl->assign("lbl_gastos",  $this->localize( "balanceDia.gastos" ) );
+		$xtpl->assign("lbl_saldo",  $this->localize( "balanceDia.saldo" ) );
 	}
 
 	protected function parseXTemplate(XTemplate $xtpl){
@@ -116,6 +117,13 @@ class BalanceMes extends RastyComponent{
 			$xtpl->assign("ganancias",  'Negocio: '.DrinkUIUtils::formatMontoToView($ganancia).' - Hielo: '.DrinkUIUtils::formatMontoToView($saldos["gananciashielo"])  );
 			$xtpl->assign("comisiones",  'Negocio: '.DrinkUIUtils::formatMontoToView((-1)*$saldos["comisiones"]).' - Hielo: '.DrinkUIUtils::formatMontoToView((-1)*$saldos["comisioneshielo"])  );
         $xtpl->assign("gastos",  DrinkUIUtils::formatMontoToView((-1)*$gastoSaldo)  );
+
+		$mitadHielo = $saldos["gananciashielo"]/2;
+		$saldo = $ganancia + $mitadHielo - ($saldos["comisiones"]+$saldos["comisioneshielo"]+$gastoSaldo);
+
+		$xtpl->assign("saldo",  DrinkUIUtils::formatMontoToView($saldo)  .' - Mitad Hielo '.DrinkUIUtils::formatMontoToView($mitadHielo));
+
+
 		//Logger::logObject($saldos);
 		if ($saldos['productos']) {
 			$productos='';

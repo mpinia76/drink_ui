@@ -1281,6 +1281,7 @@
  	"balanceDia.pagos":"Pagos cta. cte.",
  	"balanceDia.ventas":"Ventas",
  	"balanceDia.gastos":"Gastos",
+ 	"balanceDia.saldo":"Ganancia Neta",
  	"balanceDia.fecha":"Fecha",
  	"balanceDia.ganancias":"Ganancias",
 
@@ -1290,6 +1291,7 @@
  	"balanceMes.pagos":"Pagos",
  	"balanceMes.ventas":"Ventas",
  	"balanceMes.gastos":"Gastos",
+ 	"balanceDia.saldo":"Ganancia Neta",
  	"balanceMes.comisiones":"Comisiones",
  	"balanceMes.ganancia":"Ganancia",
  	"balanceMes.mes":"Mes",
